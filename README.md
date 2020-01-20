@@ -189,8 +189,8 @@ class Install
             ->external('npm', 'install')
             ->external('npm', 'run', 'development');
 
-        if ($run->getOption('seed')) {
-            $run->artisan('migrate', ['seed' => true]);
+        if ($run->getOption('fresh')) {
+            $run->artisan('migrate:fresh', ['seed' => true]);
         }
         else{
             $run->artisan('migrate');
@@ -211,7 +211,7 @@ class Install
 Run it by passing "**options**" option:
 
 ```bash
-artisan app:install --options=seed --options=supervisor
+artisan app:install --options=fresh --options=supervisor
 ```
 
 To see details of running actions use verbosity mode:
