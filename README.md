@@ -172,6 +172,48 @@ Run it by passing "**root**" option:
 artisan app:install --root
 ```
 
+If you need to perform actions with other parameters, you can call an action to check the parameter:
+
+```php
+namespace App;
+
+use MadWeb\Initializer\Contracts\Runner;
+
+class Install
+{
+    public function production(Runner $run) { ... }
+
+    public function local(Runner $run)
+    {
+        $run->external('composer', 'install')
+            ->external('npm', 'install')
+            ->external('npm', 'run', 'development');
+
+        if ($run->getOption('seed')) {
+            $run->artisan('migrate', ['seed' => true]);
+        }
+        else{
+            $run->artisan('migrate');
+        }
+        
+        $run->artisan('cache:clear');
+
+        if ($run->getOption('supervisor')) {
+            $run->external('supervisorctl', 'reread')
+                ->external('supervisorctl', 'update');
+        }
+        
+        return $run;
+    }
+}
+```
+
+Run it by passing "**options**" option:
+
+```bash
+artisan app:install --options=seed --options=supervisor
+```
+
 To see details of running actions use verbosity mode:
 
 ```bash
