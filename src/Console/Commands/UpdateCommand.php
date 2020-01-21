@@ -63,7 +63,7 @@ class UpdateCommand extends AbstractInitializeCommand
         $options = array_keys($options);
 
         if (count($options) > 0) {
-            return '. Allowed options:['.implode(', ', $options) .']';
+            return '. Allowed options:['.implode(', ', $options).']';
         }
     }
 }

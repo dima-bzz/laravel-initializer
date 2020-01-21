@@ -20,5 +20,4 @@ class OptionRunnerCommandTest extends RunnerCommandsTestCase
 
         $this->assertTrue($test);
     }
-    
 }
