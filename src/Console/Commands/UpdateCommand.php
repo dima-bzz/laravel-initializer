@@ -7,13 +7,11 @@ use Illuminate\Contracts\Container\Container;
 class UpdateCommand extends AbstractInitializeCommand
 {
     /**
-     * The name and signature of the console command.
+     * The console command name.
      *
      * @var string
      */
-    protected $signature = 'app:update
-                            {--root : Run commands which requires root privileges}
-                            {--o|options=* : Run commands for custom options}';
+    protected $name = 'app:update';
 
     /**
      * The console command description.
@@ -21,6 +19,22 @@ class UpdateCommand extends AbstractInitializeCommand
      * @var string
      */
     protected $description = 'Update the application according to current environment';
+
+    /**
+     * Create a new command instance.
+     *
+     * @param  Illuminate\Contracts\Container\Container  $container
+     * @return void
+     */
+    public function __construct(Container $container)
+    {
+        $this->signature = 'app:update
+                            {--root : Run commands which requires root privileges}
+                            {--o|options=* : Run commands for custom options'.$this->getOptionsConfig($container).'}';
+
+        parent::__construct();
+
+    }
 
     /**
      * Returns instance of Update class which defines initializing runner chain.

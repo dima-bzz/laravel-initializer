@@ -64,6 +64,14 @@ php artisan vendor:publish --provider="MadWeb\Initializer\InitializerServiceProv
 
 _by default value is set to `app.env` for laravel, in most cases you don't need to override this value._
 
+If you are using advanced options, you must publish config file and set `options`.
+
+```php
+...
+'options' => ['migrate'],
+...
+```
+
 ## Usage
 
 Usage of `app:install` and `app:update` command are the same except that `app:install` uses `Install` class and `app:update` uses `Update` class.
