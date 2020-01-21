@@ -50,4 +50,23 @@ class UpdateCommand extends AbstractInitializeCommand
     {
         return 'Application update';
     }
+
+    /**
+     * Returns allowed options.
+     *
+     * @return string
+     */
+    protected function getOptionsConfig(Container $container)
+    {
+        $config = $container->make('config');
+        $options = $config->get($config->get('initializer.options.update'));
+
+        $options = array_keys($options);
+
+        if(count($options) > 0) {
+            return '. Allowed options:[' . implode(', ', $options) . ']';
+        }
+
+        return;
+    }
 }

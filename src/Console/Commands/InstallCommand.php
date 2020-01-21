@@ -49,4 +49,18 @@ class InstallCommand extends AbstractInitializeCommand
     {
         return 'Application installation';
     }
+
+    protected function getOptionsConfig(Container $container)
+    {
+        $config = $container->make('config');
+        $options = $config->get($config->get('initializer.options.install'));
+
+        $options = array_keys($options);
+
+        if(count($options) > 0) {
+            return '. Allowed options:[' . implode(', ', $options) . ']';
+        }
+
+        return;
+    }
 }
