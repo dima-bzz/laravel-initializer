@@ -34,6 +34,7 @@ class InstallCommand extends AbstractInitializeCommand
 
         parent::__construct();
     }
+
     /**
      * Returns instance of Install class which defines initializing runner chain.
      *
@@ -56,8 +57,8 @@ class InstallCommand extends AbstractInitializeCommand
 
         $options = array_keys($options);
 
-        if(count($options) > 0) {
-            return '. Allowed options:[' . implode(', ', $options) . ']';
+        if (count($options) > 0) {
+            return '. Allowed options:['.implode(', ', $options).']';
         }
     }
 }
