@@ -61,6 +61,25 @@ abstract class AbstractInitializeCommand extends Command
     }
 
     /**
+     * Returns allowed options.
+     *
+     * @return string
+     */
+    protected function getOptionsConfig(Container $container)
+    {
+        $config = $container->make('config');
+        $options = $config->get($config->get('initializer.options'));
+
+        $options = array_keys($options);
+
+        if(count($options) > 0) {
+            return '. Allowed options:[' . implode(', ', $options) . ']';
+        }
+
+        return;
+    }
+
+    /**
      * Returns initializer instance for current command.
      *
      * @return object
