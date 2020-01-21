@@ -68,14 +68,10 @@ If you are using advanced options, you must publish config file and set `options
 
 ```php
 ...
-<<<<<<< HEAD
 'options' => [
     'install' => ['migrate'],
     'update' => [],
 ]
-=======
-'options' => ['migrate'],
->>>>>>> 04c37dded86eea311f7193fb1911960507f7adb8
 ...
 ```
 
