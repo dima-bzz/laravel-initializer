@@ -6,7 +6,6 @@ use MadWeb\Initializer\Run;
 
 class OptionRunnerCommandTest extends RunnerCommandsTestCase
 {
-
     /**
      * @test
      * @dataProvider initCommandsOptionSet

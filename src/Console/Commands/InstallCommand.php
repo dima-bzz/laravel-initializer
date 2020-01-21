@@ -33,7 +33,6 @@ class InstallCommand extends AbstractInitializeCommand
                             {--o|options=* : Run commands for custom options'.$this->getOptionsConfig($container).'}';
 
         parent::__construct();
-
     }
     /**
      * Returns instance of Install class which defines initializing runner chain.
@@ -60,7 +59,5 @@ class InstallCommand extends AbstractInitializeCommand
         if(count($options) > 0) {
             return '. Allowed options:[' . implode(', ', $options) . ']';
         }
-
-        return;
     }
 }

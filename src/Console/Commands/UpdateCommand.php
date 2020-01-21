@@ -33,7 +33,6 @@ class UpdateCommand extends AbstractInitializeCommand
                             {--o|options=* : Run commands for custom options'.$this->getOptionsConfig($container).'}';
 
         parent::__construct();
-
     }
 
     /**
@@ -63,10 +62,8 @@ class UpdateCommand extends AbstractInitializeCommand
 
         $options = array_keys($options);
 
-        if(count($options) > 0) {
+        if (count($options) > 0) {
             return '. Allowed options:[' . implode(', ', $options) . ']';
         }
-
-        return;
     }
 }
