@@ -92,7 +92,7 @@ class Run implements RunnerContract
         return $this->run(new Dispatch($this->artisanCommand, $job, true));
     }
 
-    public function getOption($option): bool
+    public function getOption(string $option): bool
     {
         return in_array($option, $this->options);
     }
