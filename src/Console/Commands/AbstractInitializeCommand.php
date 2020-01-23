@@ -36,7 +36,7 @@ abstract class AbstractInitializeCommand extends Command
 
         $result = $initializerInstance
             ->{$this->option('root') ? $env.'Root' : $env}
-            ($container->makeWith(Run::class, ['artisanCommand' => $this, 'options' => $this->option('options')]));
+            ($container->makeWith(Run::class, ['artisanCommand' => $this]));
 
         $this->output->newLine();
 

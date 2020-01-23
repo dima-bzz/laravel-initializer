@@ -20,10 +20,10 @@ class Run implements RunnerContract
 
     private $errorMessages = [];
 
-    public function __construct(Command $artisanCommand, $options)
+    public function __construct(Command $artisanCommand)
     {
         $this->artisanCommand = $artisanCommand;
-        $this->options = $options;
+        this->options = $artisanCommand->option('options');
     }
 
     public function errorMessages(): array
