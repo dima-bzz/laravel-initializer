@@ -23,7 +23,7 @@ class Run implements RunnerContract
     public function __construct(Command $artisanCommand)
     {
         $this->artisanCommand = $artisanCommand;
-        this->options = $artisanCommand->option('options');
+        $this->options = $artisanCommand->option('options');
     }
 
     public function errorMessages(): array
