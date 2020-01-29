@@ -10,7 +10,13 @@ return [
     */
     'env_config_key' => 'app.env',
     'options' => [
-        'install' => [],
-        'update' => [],
+        'local' => [
+            'install' => [],
+            'update' => [],
+        ],
+        'production' => [
+            'install' => [],
+            'update' => [],
+        ],
     ],
 ];
