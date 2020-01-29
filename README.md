@@ -272,6 +272,7 @@ $run
     ->publishTag('public') // Publish specific tag
     ->publishTag(['public', 'assets']) // Publish multiple tags
     ->publishTagForce('public') // Force publish tags
+    ->message('Ok, message') // Custom message
 ```
 
 ### Laravel Nova

@@ -27,4 +27,6 @@ interface Runner
     public function publishTagForce($tag): self;
 
     public function getOption(string $option): bool;
+
+    public function message(string $text): self;
 }

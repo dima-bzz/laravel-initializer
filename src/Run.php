@@ -92,6 +92,13 @@ class Run implements RunnerContract
         return $this->run(new Dispatch($this->artisanCommand, $job, true));
     }
 
+    public function message(string $text): RunnerContract
+    {
+        $this->artisanCommand->line("<comment>Custom message: </comment>$text");
+
+        return $this;
+    }
+
     public function getOption(string $option): bool
     {
         return in_array($option, $this->options);
