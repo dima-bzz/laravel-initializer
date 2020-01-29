@@ -52,6 +52,7 @@ class InstallCommand extends AbstractInitializeCommand
 
     protected function getOptionsConfig(Container $container)
     {
+        $config = $container->make('config');
         $env = $config->get($config->get('initializer.env_config_key'));
         $options = $config->get($config->get('initializer.options.'.$env.'.install'));
 
