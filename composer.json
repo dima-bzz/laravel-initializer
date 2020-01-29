@@ -2,7 +2,7 @@
     "name": "mad-web/laravel-initializer",
     "description": "A convenient way to initialize your application",
     "type": "library",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "keywords": [
         "mad-web",
         "laravel-initializer",
