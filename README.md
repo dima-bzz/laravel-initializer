@@ -96,8 +96,7 @@ class Install
 {
     public function production(Runner $run)
     {
-        return $run
-            ->external('composer', 'install', '--no-dev', '--prefer-dist', '--optimize-autoloader')
+        $run->external('composer', 'install', '--no-dev', '--prefer-dist', '--optimize-autoloader')
             ->artisan('key:generate')
             ->artisan('migrate', ['--force' => true])
             ->artisan('storage:link')
@@ -111,8 +110,7 @@ class Install
 
     public function local(Runner $run)
     {
-        return $run
-            ->external('composer', 'install')
+        $run->external('composer', 'install')
             ->artisan('key:generate')
             ->artisan('migrate')
             ->artisan('storage:link')
@@ -133,8 +131,7 @@ class Update
 {
     public function production(Runner $run)
     {
-        return $run
-            ->external('composer', 'install', '--no-dev', '--prefer-dist', '--optimize-autoloader')
+        $run->external('composer', 'install', '--no-dev', '--prefer-dist', '--optimize-autoloader')
             ->external('npm', 'install', '--production')
             ->external('npm', 'run', 'production')
             ->artisan('route:cache')
@@ -147,8 +144,7 @@ class Update
 
     public function local(Runner $run)
     {
-        return $run
-            ->external('composer', 'install')
+        $run->external('composer', 'install')
             ->external('npm', 'install')
             ->external('npm', 'run', 'development')
             ->artisan('migrate')
@@ -174,8 +170,7 @@ class Install
 
     public function productionRoot(Runner $run)
     {
-        return $run
-            ->dispatch(new MakeQueueSupervisorConfig)
+        $run->dispatch(new MakeQueueSupervisorConfig)
             ->dispatch(new MakeSocketSupervisorConfig)
             ->external('supervisorctl', 'reread')
             ->external('supervisorctl', 'update');
@@ -219,8 +214,6 @@ class Install
             $run->external('supervisorctl', 'reread')
                 ->external('supervisorctl', 'update');
         }
-        
-        return $run;
     }
 }
 ```
@@ -414,7 +407,7 @@ If your application has actions that require root privileges and you use Unix ba
 ```php
 public function production(Runner $run)
 {
-    return $run
+    $run->artisan(...)
         ...
         ->external('sudo', 'php', 'artisan', 'app:install', '--root');
 }

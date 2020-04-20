@@ -8,8 +8,7 @@ class Install
 {
     public function production(Runner $run)
     {
-        return $run
-            ->external('composer', 'install', '--no-dev', '--prefer-dist', '--optimize-autoloader')
+        $run->external('composer', 'install', '--no-dev', '--prefer-dist', '--optimize-autoloader')
             ->artisan('key:generate', ['--force' => true])
             ->artisan('migrate', ['--force' => true])
             ->artisan('storage:link')
@@ -23,8 +22,7 @@ class Install
 
     public function local(Runner $run)
     {
-        return $run
-            ->external('composer', 'install')
+        $run->external('composer', 'install')
             ->artisan('key:generate')
             ->artisan('migrate')
             ->artisan('storage:link')

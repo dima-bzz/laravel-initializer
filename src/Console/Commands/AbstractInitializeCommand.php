@@ -34,20 +34,28 @@ abstract class AbstractInitializeCommand extends Command
 
         $this->alert($this->title().' started');
 
-        $result = $initializerInstance
-            ->{$this->option('root') ? $env.'Root' : $env}
-            ($container->makeWith(Run::class, ['artisanCommand' => $this]));
+        $runner = $container->makeWith(Run::class, ['artisanCommand' => $this]);
+
+        $initializerInstance->{$this->option('root') ? $env.'Root' : $env}($runner);
 
         $this->output->newLine();
 
-        if ($result->errorMessages()) {
-            $this->line('<fg=red>'.$this->title().' done with errors:</>');
+        if ($runner->doneWithErrors()) {
+            $errorMessages = $runner->errorMessages();
 
-            $this->output->newLine();
+            $this->line(
+                '<fg=red>'.$this->title().' done with errors'.
+                (! empty($errorMessages) ? ':' : '.').
+                '</>'
+            );
 
-            foreach ($result->errorMessages() as $message) {
-                $this->error($message);
+            if (! empty($errorMessages)) {
                 $this->output->newLine();
+
+                foreach ($runner->errorMessages() as $message) {
+                    $this->error($message);
+                    $this->output->newLine();
+                }
             }
 
             $this->line('<fg=red>You could run command with <fg=cyan>-v</> flag to see more details</>');
