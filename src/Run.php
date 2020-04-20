@@ -20,6 +20,8 @@ class Run implements RunnerContract
 
     private $errorMessages = [];
 
+    private $doneWithErrors = false;
+
     public function __construct(Command $artisanCommand)
     {
         $this->artisanCommand = $artisanCommand;
@@ -36,7 +38,13 @@ class Run implements RunnerContract
         $action();
 
         if ($action->failed()) {
-            $this->errorMessages[] = $action->errorMessage();
+            if (! $this->doneWithErrors) {
+                $this->doneWithErrors = true;
+            }
+
+            if ($message = $action->errorMessage()) {
+                $this->errorMessages[] = $message;
+            }
         }
 
         return $this;
@@ -44,7 +52,7 @@ class Run implements RunnerContract
 
     public function doneWithErrors(): bool
     {
-        return ! empty($this->errorMessages);
+        return $this->doneWithErrors;
     }
 
     public function artisan(string $command, array $arguments = []): RunnerContract
